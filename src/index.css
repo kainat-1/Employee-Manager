@@ -1,3 +1,37 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.form {
+  padding: 10px;
+  border: 2px solid black;
+  background: white;
+}
+.label {
+  padding: 30px;
+  margin: 5px;
+}
+.email,
+.password {
+  padding: 4px;
+  text-align: center;
+}
+input {
+  margin: 10px;
+}
+.loginButton {
+  text-align: center;
+  padding: 10px;
+  background-color: rgb(9, 180, 145);
+  font-weight: bold;
+  width: 80%;
+}
+.buttonDiv {
+  text-align: center;
+  padding: 10px;
+}
+.forgotPassword {
+  margin-left: 50px;
+  text-decoration: none;
+  color: gray;
+}
