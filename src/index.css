@@ -35,3 +35,6 @@ input {
   text-decoration: none;
   color: gray;
 }
+.error {
+  color: red;
+}

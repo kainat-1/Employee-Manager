@@ -4,20 +4,30 @@ import axios from "axios";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
 
- const handleSubmit = async (e) => {
-  e.preventDefault();
-  try {
-    const response = await axios.post("http://localhost:3000/api/auth/login", {
-      email,
-      password,
-    });
-    console.log(response);
-  } catch (error) {
-    console.log(error);
-  }
-};
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/api/auth/login",
+        {
+          email,
+          password,
+        }
+      );
+      if (response.data.success) {
+        alert("Successfully Login");
+      }
+    } catch (error) {
+      if (error.response && !error.response.data.success) {
+        setError(error.response.data.error);
+      } else {
+        setError("Server Error");
+      }
+    }
+  };
 
   return (
     <div
@@ -32,6 +42,7 @@ const Login = () => {
       <div>
         <h2 className="text-2xl font-bold mb-4">Login</h2>
       </div>
+      {error && <p className="text-read-500 error">{error}</p>}
       <form className="form" onSubmit={handleSubmit}>
         <div className="mb-4">
           <label htmlFor="email" className="label">
@@ -41,7 +52,7 @@ const Login = () => {
             type="email"
             placeholder="Enter Email"
             onChange={(e) => setEmail(e.target.value)}
-
+            required
             className="email"
           ></input>
         </div>
@@ -53,17 +64,15 @@ const Login = () => {
             type="password"
             placeholder="Enter Password"
             className="password"
-           onChange={(e) => setPassword(e.target.value)}
-
+            onChange={(e) => setPassword(e.target.value)}
+            required
           ></input>
           <div>
             <label>
               <input type="checkbox" className="form-checkbox" />
               <span>Remember me</span>
             </label>
-           <a href="#" className="forgotPassword text-gary-600">
-
-              
+            <a href="#" className="forgotPassword text-gary-600">
               Forgot password
             </a>
           </div>
