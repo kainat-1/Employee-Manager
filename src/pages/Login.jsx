@@ -31,7 +31,7 @@ const Login = () => {
           navigate("/employee-dashboard");
         }
       }
-      alert("Successfully Login");
+      // alert("Successfully Login");
     } catch (error) {
       if (error.response && !error.response.data.success) {
         setError(error.response.data.error);
