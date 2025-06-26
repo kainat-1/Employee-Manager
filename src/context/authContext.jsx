@@ -18,18 +18,22 @@ const AuthContext = ({ children }) => {
             "http://localhost:3000/api/auth/verify",
             {
               headers: {
-                Authorization: "Bearer",
+                Authorization: `Bearer ${token}`,
               },
             }
           );
+          console.log(response);
+
           if (response.data.success) {
             setUser(response.data.user);
           }
         } else {
           setUser(null);
-          setLoading(false)
+          setLoading(false);
         }
       } catch (error) {
+        console.log(error);
+
         if (error.response && !error.response.data.error) {
           setUser(null);
         }
@@ -38,7 +42,7 @@ const AuthContext = ({ children }) => {
       }
     };
     verifyUser();
-  }, []);
+  }, [user, loading]);
 
   const login = (user) => {
     setUser(user);
@@ -49,8 +53,10 @@ const AuthContext = ({ children }) => {
     localStorage.removeItem("token");
   };
 
+  console.log("user:", user);
+
   return (
-    <userContext.Provider value={{ user, login, logout,loading }}>
+    <userContext.Provider value={{ user, login, logout, loading }}>
       {children}
     </userContext.Provider>
   );

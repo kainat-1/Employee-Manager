@@ -6,6 +6,7 @@ import "./App.css";
 import EmployeeDashboard from "./pages/EmployeeDashboard";
 import PrivateRoutes from "./utils/privateRoutes";
 import RoleBaseRoutes from "./utils/RoleBaseRoutes";
+import React from "react";
 
 function App() {
   return (
