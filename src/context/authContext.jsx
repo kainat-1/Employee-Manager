@@ -22,7 +22,7 @@ const AuthContext = ({ children }) => {
               },
             }
           );
-          console.log(response);
+          // console.log(response);
 
           if (response.data.success) {
             setUser(response.data.user);
@@ -53,7 +53,7 @@ const AuthContext = ({ children }) => {
     localStorage.removeItem("token");
   };
 
-  console.log("user:", user);
+  // console.log("user:", user);
 
   return (
     <userContext.Provider value={{ user, login, logout, loading }}>
