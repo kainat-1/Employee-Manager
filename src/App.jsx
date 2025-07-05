@@ -10,7 +10,7 @@ import RoleBaseRoutes from "./utils/RoleBaseRoutes";
 import AdminSummary from "./components/dashboard/AdminSummary";
 import DepartmentList from "./components/Departments/DepartmentList";
 import AddDepartment from "./components/Departments/AddDepartment";
-import EditDepartment from "./components/Departments/EditDepartment"; // Also fixed typo here
+import EditDepartment from "./components/Departments/EditDepartment"; 
 
 import "./App.css";
 
