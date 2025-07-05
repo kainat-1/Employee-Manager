@@ -29,8 +29,12 @@ const AdminSidebar = () => {
         </NavLink>
 
         <NavLink
-          to="/employees"
-          className="flex items-center space-x-3 hover:bg-gray-700 p-2 rounded"
+          to="/admin-dashboard/employees"
+          className={({ isActive }) =>
+            `${
+              isActive ? "bg-teal-500" : ""
+            } flex items-center space-x-3 hover:bg-gray-700 p-2 rounded`
+          }
         >
           <FaUsers />
           <span>Employees</span>
@@ -51,7 +55,7 @@ const AdminSidebar = () => {
         </NavLink>
 
         <NavLink
-          to="/leaves"
+          to="/admin-dashboard/leaves"
           className="flex items-center space-x-3 hover:bg-gray-700 p-2 rounded"
         >
           <FaCalendarAlt />
@@ -59,7 +63,7 @@ const AdminSidebar = () => {
         </NavLink>
 
         <NavLink
-          to="/salaries"
+          to="/admin-dashboard/salaries"
           className="flex items-center space-x-3 hover:bg-gray-700 p-2 rounded"
         >
           <FaMoneyBillWave />
@@ -67,7 +71,7 @@ const AdminSidebar = () => {
         </NavLink>
 
         <NavLink
-          to="/settings"
+          to="/admin-dashboard/settings"
           className="flex items-center space-x-3 hover:bg-gray-700 p-2 rounded"
         >
           <FaCog />

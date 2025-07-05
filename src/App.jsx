@@ -10,9 +10,11 @@ import RoleBaseRoutes from "./utils/RoleBaseRoutes";
 import AdminSummary from "./components/dashboard/AdminSummary";
 import DepartmentList from "./components/Departments/DepartmentList";
 import AddDepartment from "./components/Departments/AddDepartment";
-import EditDepartment from "./components/Departments/EditDepartment"; 
+import EditDepartment from "./components/Departments/EditDepartment";
 
 import "./App.css";
+import List from "./components/employee/list";
+import Add from "./components/employee/Add";
 
 function App() {
   return (
@@ -34,10 +36,11 @@ function App() {
           <Route index element={<AdminSummary />} />
           <Route path="departments" element={<DepartmentList />} />
           <Route path="add-department" element={<AddDepartment />} />
-          <Route path="department/:id" element={<EditDepartment />} />
-        </Route>
 
-        <Route path="/employee-dashboard" element={<EmployeeDashboard />} />
+          <Route path="department/:id" element={<EditDepartment />} />
+          <Route path="employees" element={<List />} />
+          <Route path="add-employee" element={<Add />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );
