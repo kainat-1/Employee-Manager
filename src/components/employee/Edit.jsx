@@ -10,7 +10,7 @@ const Edit = () => {
     name: "",
     department: "",
     salary: "",
-    // add other fields if needed, like dob, email, etc.
+    
   });
   const [loading, setLoading] = useState(true);
 
