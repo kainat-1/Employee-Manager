@@ -19,14 +19,14 @@ const View = () => {
           }
         );
 
-
-        // console.log(response.data)
-
         if (response.data.success) {
           setEmployee(response.data.employee);
+        } else {
+          setEmployee(null);
         }
       } catch (error) {
         alert(error?.response?.data?.error || "Error fetching employee");
+        setEmployee(null);
       } finally {
         setLoading(false);
       }
@@ -36,7 +36,7 @@ const View = () => {
   }, [id]);
 
   if (loading) return <p className="text-center mt-10">Loading...</p>;
-  // if (!employee) return <p className="text-center mt-10">Employee not found</p>;
+  if (!employee) return <p className="text-center mt-10">Employee not found</p>;
 
   return (
     <div className="max-w-3xl mx-auto mt-10 bg-white p-8 rounded-md shadow-md">
@@ -44,17 +44,17 @@ const View = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
           <img
-            src={`http://localhost:3000/public/uploads/${employee.userId.profileImage}`}
-            alt={employee.userId.name || "Employee"}
+            src={`http://localhost:3000/public/uploads/${employee.userId?.profileImage || "default-profile.png"}`}
+            alt={employee.userId?.name || "Employee"}
             className="rounded-full border w-72 h-72 object-cover"
           />
         </div>
         <div>
-          <Detail label="Name" value={employee.userId.name} />
-          <Detail label="Employee ID" value={employee.userId.employeeId} />
+          <Detail label="Name" value={employee.userId?.name} />
+          <Detail label="Employee ID" value={employee.userId?.employeeId} />
           <Detail
             label="Date Of Birth"
-            value={new Date(employee.dob).toLocaleDateString()}
+            value={employee.dob ? new Date(employee.dob).toLocaleDateString() : "N/A"}
           />
           <Detail label="Department" value={employee.department?.dep_name} />
         </div>
@@ -62,7 +62,6 @@ const View = () => {
     </div>
   );
 };
-
 
 const Detail = ({ label, value }) => (
   <div className="flex space-x-3 mb-5">

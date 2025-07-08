@@ -18,6 +18,10 @@ import Add from "./components/employee/Add";
 import View from "./components/employee/View";
 import Edit from "./components/employee/Edit";
 import AddSalary from "./components/salary/AddSalary";
+import ViewSalary from "./components/salary/ViewSalary";
+import Summary from "./components/EmployeeDashboard/summary";
+import LeaveList from "./components/leaves/LeaveList";
+import AddLeave from "./components/leaves/AddLeave";
 
 function App() {
   return (
@@ -39,14 +43,30 @@ function App() {
           <Route index element={<AdminSummary />} />
           <Route path="departments" element={<DepartmentList />} />
           <Route path="add-department" element={<AddDepartment />} />
-
           <Route path="department/:id" element={<EditDepartment />} />
           <Route path="employees" element={<List />} />
           <Route path="add-employee" element={<Add />} />
           <Route path="employee/:id" element={<View />} />
           <Route path="employees/edit/:id" element={<Edit />} />
+          <Route path="employees/salary/:id" element={<ViewSalary />} />
           <Route path="salary/add/" element={<AddSalary />} />
+        </Route>
 
+        <Route
+          path="/employee-dashboard"
+          element={
+            <PrivateRoutes>
+              <RoleBaseRoutes requiredRole={["admin", "employee"]}>
+                <EmployeeDashboard />
+              </RoleBaseRoutes>
+            </PrivateRoutes>
+          }
+        >
+          <Route index element={<Summary />} />
+          <Route path="profile/:id" element={<View />} />
+          <Route path="leaves" element={<LeaveList />} />
+          <Route path="add-leaves" element={<AddLeave />} />
+          
         </Route>
       </Routes>
     </BrowserRouter>

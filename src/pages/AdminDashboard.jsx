@@ -11,7 +11,7 @@ const AdminDashboard = () => {
 
   return (
     <div className=" flex ">
-      <AdminSidebar />
+      <EmployeeSidebar />
       <div className="flex-1 ml-64  bg-gray-100 h-screen">
         <Navbar />
         <Outlet/>
