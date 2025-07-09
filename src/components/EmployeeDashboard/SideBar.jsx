@@ -46,7 +46,6 @@ const SideBar = () => {
           <span>My Profile</span>
         </NavLink>
 
-        
         <NavLink
           to="/employee-dashboard/leaves"
           className={({ isActive }) =>
@@ -59,17 +58,19 @@ const SideBar = () => {
           <span>Leaves</span>
         </NavLink>
 
-        <NavLink
-          to="/employee-dashboard/salary"
-          className={({ isActive }) =>
-            `${
-              isActive ? "bg-teal-500" : ""
-            } flex items-center space-x-3 hover:bg-gray-700 p-2 rounded`
-          }
-        >
-          <FaMoneyBillWave />
-          <span>Salary</span>
-        </NavLink>
+        {user && (
+          <NavLink
+            to={`/employee-dashboard/salary/${user._id}`}
+            className={({ isActive }) =>
+              `${
+                isActive ? "bg-teal-500" : ""
+              } flex items-center space-x-3 hover:bg-gray-700 p-2 rounded`
+            }
+          >
+            <FaMoneyBillWave />
+            <span>Salary</span>
+          </NavLink>
+        )}
 
         <NavLink
           to="/employee-dashboard/settings"

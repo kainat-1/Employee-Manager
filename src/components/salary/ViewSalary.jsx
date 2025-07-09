@@ -5,14 +5,10 @@ import { useParams } from "react-router-dom";
 const ViewSalary = () => {
   const [salaries, setSalaries] = useState([]);
   const [filteredSalaries, setFilteredSalaries] = useState([]);
-  const [loading, setLoading] = useState(true); // new loading state
+  const [loading, setLoading] = useState(true);
   const { id } = useParams();
 
-  useEffect(() => {
-    fetchSalaries();
-  }, [fetchSalaries]);
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+  // ✅ Declare fetchSalaries BEFORE using it in useEffect
   const fetchSalaries = async () => {
     try {
       const response = await axios.get(
@@ -35,6 +31,12 @@ const ViewSalary = () => {
       setLoading(false);
     }
   };
+
+ 
+  useEffect(() => {
+    fetchSalaries();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const filterSalaries = (e) => {
     const keyword = e.target.value.toLowerCase();

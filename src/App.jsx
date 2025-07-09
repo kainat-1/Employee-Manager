@@ -22,6 +22,7 @@ import ViewSalary from "./components/salary/ViewSalary";
 import Summary from "./components/EmployeeDashboard/summary";
 import LeaveList from "./components/leaves/LeaveList";
 import AddLeave from "./components/leaves/AddLeave";
+import Settings from "./components/EmployeeDashboard/Settings";
 
 function App() {
   return (
@@ -49,7 +50,10 @@ function App() {
           <Route path="employee/:id" element={<View />} />
           <Route path="employees/edit/:id" element={<Edit />} />
           <Route path="employees/salary/:id" element={<ViewSalary />} />
-          <Route path="salary/add/" element={<AddSalary />} />
+          <Route path="salary/add" element={<AddSalary />} />
+
+          {/* Add this line to enable /admin-dashboard/settings */}
+          <Route path="settings" element={<Settings />} />
         </Route>
 
         <Route
@@ -66,7 +70,8 @@ function App() {
           <Route path="profile/:id" element={<View />} />
           <Route path="leaves" element={<LeaveList />} />
           <Route path="add-leaves" element={<AddLeave />} />
-          
+          <Route path="salary/:id" element={<ViewSalary />} />
+          <Route path="settings" element={<Settings />} />
         </Route>
       </Routes>
     </BrowserRouter>
