@@ -28,7 +28,7 @@ const AddLeave = () => {
 
     try {
       const response = await axios.post(
-        `http://localhost:3000/api/leave/add`,
+        `http://localhost:3000/api/leaves/add`,
         leaves,
         {
           headers: {

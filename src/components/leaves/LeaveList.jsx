@@ -5,25 +5,34 @@ import axios from "axios";
 
 const LeaveList = () => {
   const { user } = useAuth();
+
+  // Destructure user ID and role to avoid infinite effect loop
+  const userId = user?._id;
+  const userRole = user?.role;
+
   const [leaves, setLeaves] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchLeaves = async () => {
-      try {
-        const response = await axios.get(
-          `http://localhost:3000/api/leaves/${user._id}`,
-          {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
-            },
-          }
-        );
+  const isAdmin = userRole === "admin";
 
-        // console.log("Leave API response:", response.data);
+  useEffect(() => {
+    if (!userId) return;
+
+    const fetchLeaves = async () => {
+      setLoading(true);
+      try {
+        // Admin fetches all leaves, employees fetch their own leaves
+        const url = isAdmin
+          ? "http://localhost:3000/api/leaves"
+          : `http://localhost:3000/api/leaves/${userId}`;
+
+        const response = await axios.get(url, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        });
 
         if (response.data.success) {
-          
           setLeaves(Array.isArray(response.data.leaves) ? response.data.leaves : []);
         } else {
           setLeaves([]);
@@ -36,10 +45,8 @@ const LeaveList = () => {
       }
     };
 
-    if (user?._id) {
-      fetchLeaves();
-    }
-  }, [user]);
+    fetchLeaves();
+  }, [userId, isAdmin]);
 
   if (loading) {
     return <div className="p-6 text-center text-xl">Loading leaves...</div>;
@@ -56,7 +63,6 @@ const LeaveList = () => {
           type="text"
           placeholder="Search"
           className="px-4 py-1 border rounded"
-          
         />
         <Link
           to="/employee-dashboard/add-leaves"

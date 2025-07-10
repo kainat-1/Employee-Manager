@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const columns = [
   {
     name: "S No",
@@ -45,6 +46,7 @@ export const LeaveButtons = ({ id }) => {
   const handleView = () => {
     navigate(`/admin-dashboard/leave/${id}`);
   };
+
 
   return (
     <button

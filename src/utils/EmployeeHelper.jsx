@@ -112,6 +112,7 @@ export const EmployeeButtons = ({ id }) => {
       <button
         className="px-4 py-1 bg-green-500 text-white rounded"
         onClick={() => navigate(`/admin-dashboard/employees/leave/${id}`)}
+       
       >
         Leave
       </button>
