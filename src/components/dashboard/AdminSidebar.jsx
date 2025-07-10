@@ -56,7 +56,11 @@ const AdminSidebar = () => {
 
         <NavLink
           to="/admin-dashboard/leaves"
-          className="flex items-center space-x-3 hover:bg-gray-700 p-2 rounded"
+          className={({ isActive }) =>
+            `${
+              isActive ? "bg-teal-500" : ""
+            } flex items-center space-x-3 hover:bg-gray-700 p-2 rounded`
+          }
         >
           <FaCalendarAlt />
           <span>Leaves</span>
@@ -87,54 +91,3 @@ const AdminSidebar = () => {
 };
 
 export default AdminSidebar;
-
-// import React from "react";
-// import { NavLink } from "react-router-dom";
-// import {
-//   FaBuilding,
-//   FaCalendarAlt,
-//   FaCog,
-//   FaMoneyBillWave,
-//   FaTachometerAlt,
-//   FaUsers,
-// } from "react-icons/fa";
-
-// const AdminSidebar = () => {
-//   return (
-//     <div>
-//       <div className="bg-gray-800 text-white h=screen fixed left-0 top-0 bottom-0 space-y-2 w-64">
-//         <h3>Employee MS</h3>
-//       </div>
-//       <div>
-//         <NavLink
-//           to="/admin-dashboard"
-//           className="flex item-center space-x-4 py-2.5 px-4 rounded"
-//         >
-//           <FaTachometerAlt />
-//           <span>Dashboard</span>
-//         </NavLink>
-//         <NavLink to="/admin-dashboard">
-//           <FaUsers />
-//           <span>Employees</span>
-//         </NavLink>
-//         <NavLink to="/admin-dashboard">
-//           <FaBuilding />
-//           <span>Department</span>
-//         </NavLink>
-//         <NavLink to="/admin-dashboard">
-//           <FaCalendarAlt />
-//           <span>Leaves</span>
-//         </NavLink>
-//         <NavLink to="/admin-dashboard">
-//           <FaMoneyBillWave />
-//           <span>Salary</span>
-//         </NavLink>
-//         <NavLink to="/admin-dashboard">
-//           <FaCog />
-//           <span>settings</span>
-//         </NavLink>
-//       </div>
-//     </div>
-//   );
-// };
-// export default AdminSidebar;

@@ -23,6 +23,7 @@ import Summary from "./components/EmployeeDashboard/summary";
 import LeaveList from "./components/leaves/LeaveList";
 import AddLeave from "./components/leaves/AddLeave";
 import Settings from "./components/EmployeeDashboard/Settings";
+import Table from "./components/leaves/Table";
 
 function App() {
   return (
@@ -51,6 +52,7 @@ function App() {
           <Route path="employees/edit/:id" element={<Edit />} />
           <Route path="employees/salary/:id" element={<ViewSalary />} />
           <Route path="salary/add" element={<AddSalary />} />
+          <Route path="leaves" element={<Table />} />
 
           {/* Add this line to enable /admin-dashboard/settings */}
           <Route path="settings" element={<Settings />} />
